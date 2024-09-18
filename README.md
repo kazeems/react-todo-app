@@ -11,8 +11,8 @@ Major plugins used in this project
 Follow this steps to setup this TODO app on your local machine:
 1. Clone this repo with ```git clone https://github.com/mdn/todo-react.git```
 
-2. Run ```npm install`` in your terminal to install dependencies
+2. Run ```npm install``` in your terminal to install dependencies
 
-3. Run ```npm install nanoid`` to install the plugin for random IDs for our TODOs
+3. Run ```npm install nanoid``` to install the plugin for random IDs for our TODOs
 
 3. Run ```npm run dev``` to start the web app

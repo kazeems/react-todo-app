@@ -1,13 +1,31 @@
+import { useEffect, useRef, useState } from "react";
+
+function usePrevious(value) {
+  const ref = useRef(null);
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
 
-  function handleChange(e) {
-    setNewName(e.target.value);
+  const editFieldRef = useRef(null);
+  const editButtonRef = useRef(null);
+
+  const wasEditing = usePrevious(isEditing);
+
+  function handleChange(event) {
+    setNewName(event.target.value);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  // NOTE: As written, this function has a bug: it doesn't prevent the user
+  // from submitting an empty form. This is left as an exercise for developers
+  // working through MDN's React tutorial.
+  function handleSubmit(event) {
+    event.preventDefault();
     props.editTask(props.id, newName);
     setNewName("");
     setEditing(false);
@@ -25,6 +43,7 @@ function Todo(props) {
           type="text"
           value={newName}
           onChange={handleChange}
+          ref={editFieldRef}
         />
       </div>
       <div className="btn-group">
@@ -62,7 +81,8 @@ function Todo(props) {
           className="btn"
           onClick={() => {
             setEditing(true);
-          }}>
+          }}
+          ref={editButtonRef}>
           Edit <span className="visually-hidden">{props.name}</span>
         </button>
         <button
@@ -74,6 +94,14 @@ function Todo(props) {
       </div>
     </div>
   );
+
+  useEffect(() => {
+    if (!wasEditing && isEditing) {
+      editFieldRef.current.focus();
+    } else if (wasEditing && !isEditing) {
+      editButtonRef.current.focus();
+    }
+  }, [wasEditing, isEditing]);
 
   return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
 }

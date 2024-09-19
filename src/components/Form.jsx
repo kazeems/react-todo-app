@@ -8,6 +8,11 @@ function Form(props) {
   // working through MDN's React tutorial.
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (name === '') return alert("Error: Please enter a valid TODO name!");
+
+    if (name.length < 3) return alert("Error: TODO name must contain at least three characters!");
+
     props.addTask(name);
     setName("");
   }
@@ -20,7 +25,7 @@ function Form(props) {
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">
         <label htmlFor="new-todo-input" className="label__lg">
-          What needs to be done?
+          Welcome! Please provide your task.
         </label>
       </h2>
 
@@ -33,8 +38,8 @@ function Form(props) {
         value={name}
         onChange={handleChange}
       />
-      <button type="submit" className="btn btn__primary btn__lg">
-        Add
+      <button type="submit" className="btn btn__primary btn__lg add_button">
+        Add Todo
       </button>
     </form>
   );

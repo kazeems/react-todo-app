@@ -63,19 +63,20 @@ function Todo(props) {
   );
 
   const viewTemplate = (
-    <div className="stack-small">
-      <div className="c-cb">
+    <div className="stack-small todo-stack">
+      <div className="c-cb checkboxes">
         <input
           id={props.id}
           type="checkbox"
           defaultChecked={props.completed}
           onChange={() => props.toggleTaskCompleted(props.id)}
+          className="todo-checkbox"
         />
         <label className="todo-label" htmlFor={props.id}>
           {props.name}
         </label>
       </div>
-      <div className="btn-group">
+      <div className="btn-group todo-action-btns">
         <button
           type="button"
           className="btn"

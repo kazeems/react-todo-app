@@ -4,14 +4,14 @@ import App from './App.jsx'
 import './index.css'
 
 // eslint-disable-next-line react-refresh/only-export-components
-const DATA = [
-  { id: "todo-0", name: "Eat", completed: true },
-  { id: "todo-1", name: "Sleep", completed: false },
-  { id: "todo-2", name: "Repeat", completed: false },
-];
+/*Const Data = [
+  { Id: "Todo-0", Name: "Eat", Completed: True },
+  { Id: "Todo-1", Name: "Sleep", Completed: False },
+  { Id: "Todo-2", Name: "Repeat", Completed: False },
+];*/
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App tasks={DATA} />
+    <App />
   </React.StrictMode>,
 )

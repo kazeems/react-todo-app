@@ -108,7 +108,7 @@ function App(props) {
         className="todo-list stack-large stack-exception"
         role="list"
       >
-        tasks.length > 0 ? {taskList} : <li></li>
+        {taskList}
       </ul>
     </div>
   );
